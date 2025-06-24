@@ -1,0 +1,74 @@
+"use client"
+
+import { cn } from "@/lib/utils"
+import { BookUser, Home, Package, Scan, ShoppingCart } from "lucide-react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+
+interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> { }
+
+export function Sidebar({ className }: SidebarProps) {
+  const pathname = usePathname();
+
+  const navItems = [
+    {
+      href: "/dashboard",
+      icon: Home,
+      label: "Dashboard",
+    },
+    {
+      href: "/tables",
+      icon: BookUser,
+      label: "Tables",
+    },
+    {
+      href: "/inventory",
+      icon: Package,
+      label: "Inventory",
+    },
+    {
+      href: "/ingredient-tool",
+      icon: Package,
+      label: "Ingredient Tool",
+    },
+    {
+      href: "/order-history",
+      icon: ShoppingCart,
+      label: "Order History",
+    },
+    {
+      href: "/barcode-scanner",
+      icon: Scan, // Using the Scan icon for barcode scanner
+      label: "Barcode Scanner",
+    },
+  ]
+
+  return (
+    <div className={cn("pb-12", className)}>
+      <div className="space-y-4 py-4">
+        <div className="px-3 py-2">
+          <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
+            Overview
+          </h2>
+          <div className="space-y-1">
+            {navItems.map((item) => (
+              <Link key={item.href} href={item.href}>
+                <button
+                  className={cn(
+                    "w-full justify-start",
+                    pathname === item.href
+                      ? "bg-primary text-primary-foreground"
+                      : "hover:bg-accent hover:text-accent-foreground"
+                  )}
+                >
+                  <item.icon className="mr-2 h-4 w-4" />
+                  {item.label}
+                </button>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
