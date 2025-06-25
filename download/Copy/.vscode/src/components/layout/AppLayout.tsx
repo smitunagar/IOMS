@@ -13,6 +13,7 @@ import {
   BarChartBig,
   UtensilsCrossed,
   History,
+  Barcode, // Import BarcodeIcon
   LogOut, 
   Loader2,
   MessageSquareQuote, // Added for AI Order Agent
@@ -50,6 +51,7 @@ const navItems: NavItem[] = [
   { href: "/ingredient-tool", label: "AI Ingredient Tool", icon: Sparkles },
   { href: "/inventory", label: "Inventory", icon: Boxes },
   { href: "/ai-order-agent", label: "AI Order Agent", icon: MessageSquareQuote }, // New Item
+  { href: "/barcode-scanner", label: "Barcode Scanner", icon: Barcode }, // New Item for Barcode Scanner
   { href: "/dashboard", label: "Analytics", icon: BarChartBig },
 ];
 

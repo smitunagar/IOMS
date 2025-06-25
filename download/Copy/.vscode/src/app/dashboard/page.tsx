@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts';
 import { DollarSign, ShoppingBag, Users, TrendingUp, Clock, Repeat, Smile, TrendingDown, Info as InfoIcon, Utensils, Percent } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'; // Assuming cn is correctly imported
 
 // Data Interfaces
 interface DailyOrdersData {
@@ -98,6 +98,20 @@ export default function DashboardPage() {
   const [tableTurnover, setTableTurnover] = useState(0);
   const [csatScore, setCsatScore] = useState(0);
   const [occupancyRate, setOccupancyRate] = useState(0);
+  
+  // Dummy Inventory Data
+  const dummyInventoryTurnoverRate = parseFloat((Math.random() * 10 + 5).toFixed(1)); // e.g., 7.5
+  const dummyLowStockItems = [
+    { id: 'inv1', name: 'Tomatoes', currentStock: 5, unit: 'kg', reorderPoint: 10 },
+    { id: 'inv2', name: 'Chicken Breast', currentStock: 10, unit: 'kg', reorderPoint: 15 },
+    { id: 'inv3', name: 'Pasta', currentStock: 8, unit: 'boxes', reorderPoint: 12 },
+    { id: 'inv4', name: 'Milk', currentStock: 3, unit: 'liters', reorderPoint: 5 },
+  ].filter(item => item.currentStock <= item.reorderPoint);
+
+  // Inventory KPI States (using dummy data for now)
+  const [inventoryTurnoverRate, setInventoryTurnoverRate] = useState(dummyInventoryTurnoverRate);
+  const [lowStockItems, setLowStockItems] = useState(dummyLowStockItems);
+
 
   // Filter States
   const [salesTrendPeriod, setSalesTrendPeriod] = useState('weekly');
@@ -167,6 +181,7 @@ export default function DashboardPage() {
           <TabsTrigger value="sales_trends">Sales Trends</TabsTrigger>
           <TabsTrigger value="menu_performance">Menu Performance</TabsTrigger>
           <TabsTrigger value="operations">Operational Metrics</TabsTrigger>
+ <TabsTrigger value="inventory_stats">Inventory Stats</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="space-y-6">
@@ -248,7 +263,45 @@ export default function DashboardPage() {
           </div>
         </TabsContent>
 
-        <TabsContent value="sales_trends" className="space-y-6">
+        {/* Inventory Stats */}
+        <TabsContent value="inventory_stats" className="space-y-6">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+            <Card className="col-span-4">
+              <CardHeader>
+                <CardTitle>Inventory Turnover Rate</CardTitle>
+                <CardDescription>How quickly inventory is sold and replaced</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="text-4xl font-bold text-center py-8">
+                  {inventoryTurnoverRate} <span className="text-xl text-muted-foreground">times</span>
+                </div>
+                {/* More advanced charts could go here */}
+              </CardContent>
+            </Card>
+            <Card className="col-span-3">
+              <CardHeader>
+                <CardTitle>Low Stock Alerts</CardTitle>
+                <CardDescription>Items needing reorder ({lowStockItems.length})</CardDescription>
+              </CardHeader>
+              <CardContent className="max-h-[200px] overflow-y-auto">
+                {lowStockItems.length > 0 ? (
+                  <ul>
+                    {lowStockItems.map(item => (
+                      <li key={item.id} className="flex justify-between py-1 text-sm">
+                        <span>{item.name}</span>
+                        <span className="text-red-600">{item.currentStock} {item.unit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-muted-foreground text-center py-4">No low stock items!</p>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        
+          
+
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
               <div>
