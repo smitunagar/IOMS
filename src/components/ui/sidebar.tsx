@@ -1,9 +1,11 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { BookUser, Home, Package, Scan, ShoppingCart } from "lucide-react"
+import { BookUser, Home, Package, Scan, ShoppingCart, X } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useEffect, useRef, useState } from "react"
+import Quagga from 'quagga';
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> { }
 
@@ -42,6 +44,51 @@ export function Sidebar({ className }: SidebarProps) {
       label: "Barcode Scanner",
     },
   ]
+
+  const [isScanning, setIsScanning] = useState(false);
+  const [scannedResult, setScannedResult] = useState<string | null>(null);
+  const videoRef = useRef<HTMLDivElement>(null);
+
+  const startScanning = () => {
+    setIsScanning(true);
+    setScannedResult(null);
+    Quagga.init({
+      inputStream: {
+        name: "Live",
+        type: "LiveStream",
+        target: videoRef.current!,
+        constraints: {
+          facingMode: "environment", // or "user" for front camera
+        },
+      },
+      decoder: {
+        readers: ["ean_reader"], // Specify the types of barcodes you want to read
+      },
+    }, function (err: any) {
+      if (err) {
+        console.error(err);
+        setIsScanning(false);
+        return
+      }
+      Quagga.start();
+    });
+
+    Quagga.onDetected(handleDetected);
+  };
+
+  const handleDetected = (result: any) => {
+    console.log("Barcode detected:", result.codeResult.code);
+    setScannedResult(result.codeResult.code);
+    stopScanning(); // Stop scanning after detecting a barcode
+  };
+
+  const stopScanning = () => {
+    Quagga.stop();
+    setIsScanning(false);
+  };
+
+  // Clean up on unmount
+  useEffect(() => { return () => { stopScanning(); }; }, []);
 
   return (
     <div className={cn("pb-12", className)}>
