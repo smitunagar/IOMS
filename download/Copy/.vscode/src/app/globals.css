@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 220 33% 86%; /* Light gray-blue #D0D8E6 */
+    --foreground: 231 25% 20%; /* Dark blue-gray for contrast */
+    --card: 220 33% 92%; /* Slightly lighter than background */
+    --card-foreground: 231 25% 20%;
+    --popover: 220 33% 92%;
+    --popover-foreground: 231 25% 20%;
+    --primary: 231 48% 48%; /* Saturated dark-blue #3F51B5 */
+    --primary-foreground: 220 40% 98%; /* Almost white, slight blue tint */
+    --secondary: 230 40% 70%; /* Lighter mid-tone */
+    --secondary-foreground: 231 48% 25%; /* Darker for contrast */
+    --muted: 220 25% 78%;
+    --muted-foreground: 220 15% 45%;
+    --accent: 230 45% 77%; /* Violet #9FA8DA */
+    --accent-foreground: 231 48% 25%; /* Darker for contrast */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 25% 75%;
+    --input: 220 30% 96%; /* Very light, almost white with blue tint */
+    --ring: 231 48% 48%; /* Primary color for focus rings */
+    --chart-1: 231 48% 48%; /* Primary */
+    --chart-2: 230 45% 77%; /* Accent */
+    --chart-3: 230 40% 70%; /* Secondary */
+    --chart-4: 231 48% 60%; /* Lighter Primary */
+    --chart-5: 230 45% 85%; /* Lighter Accent */
+    --radius: 0.5rem;
+
+    /* Sidebar specific theme */
+    --sidebar-background: 231 48% 38%; /* Darker shade of primary */
+    --sidebar-foreground: 220 40% 95%; /* Light text */
+    --sidebar-primary: 230 45% 77%; /* Accent color for selected/active items */
+    --sidebar-primary-foreground: 231 48% 20%; /* Dark text on accent */
+    --sidebar-accent: 231 48% 43%; /* Hover, slightly lighter than sidebar-background */
+    --sidebar-accent-foreground: 220 40% 98%; /* Light text */
+    --sidebar-border: 231 48% 30%; /* Darker border for sidebar elements */
+    --sidebar-ring: 230 45% 77%; /* Accent for ring */
+  }
+
+  .dark {
+    --background: 231 15% 18%; /* Dark blue-gray */
+    --foreground: 220 30% 90%; /* Light gray-blue text */
+    --card: 231 15% 22%;
+    --card-foreground: 220 30% 90%;
+    --popover: 231 15% 22%;
+    --popover-foreground: 220 30% 90%;
+    --primary: 230 45% 77%; /* Violet becomes primary in dark mode for better contrast */
+    --primary-foreground: 231 48% 15%; /* Dark text on light violet */
+    --secondary: 231 48% 48%; /* Saturated dark-blue becomes secondary */
+    --secondary-foreground: 220 40% 95%;
+    --muted: 231 15% 25%;
+    --muted-foreground: 220 20% 65%;
+    --accent: 231 48% 58%; /* Slightly lighter primary for accent */
+    --accent-foreground: 220 40% 98%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 231 15% 30%;
+    --input: 231 15% 25%;
+    --ring: 230 45% 77%; /* Violet for focus rings */
+    --chart-1: 230 45% 77%;
+    --chart-2: 231 48% 48%;
+    --chart-3: 231 40% 60%;
+    --chart-4: 230 45% 65%;
+    --chart-5: 231 48% 38%;
+
+    /* Sidebar specific theme for dark mode */
+    --sidebar-background: 231 15% 12%; /* Even darker blue-gray */
+    --sidebar-foreground: 220 30% 85%;
+    --sidebar-primary: 230 45% 77%; /* Violet for selected/active */
+    --sidebar-primary-foreground: 231 48% 10%;
+    --sidebar-accent: 231 15% 20%; /* Hover */
+    --sidebar-accent-foreground: 220 30% 95%;
+    --sidebar-border: 231 15% 25%;
+    --sidebar-ring: 230 45% 77%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

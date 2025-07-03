@@ -1,0 +1,10 @@
+id,name,price,category,image,aiHint,ingredients
+1,Chicken Biryani - 12.90 EUR,12.90 EUR,Hauptgerichte (Main Dishes),,,Basmati Rice;Chicken Breast;Onions;Tomatoes;Olive Oil
+2,Dal Masoor Tadka - 9.90 EUR,9.90 EUR,Hauptgerichte (Main Dishes),,,Masoor Dal;Onions;Tomatoes;Olive Oil
+3,Grilled Chicken with Mozzarella Crust - 13.90 EUR,13.90 EUR,Hauptgerichte (Main Dishes),,,Chicken Breast;Mozzarella Cheese;Olive Oil;Onions
+4,Tomato & Onion Curry - 8.90 EUR,8.90 EUR,Hauptgerichte (Main Dishes),,,Tomatoes;Onions;Olive Oil
+5,Samosa Chaat - 6.50 EUR,6.50 EUR,Vorspeisen & Snacks (Starters & Snacks),,,Samosa (Frozen);Onions;Tomatoes
+6,Cheesy Samosa Bake - 7.00 EUR,7.00 EUR,Vorspeisen & Snacks (Starters & Snacks),,,Samosa (Frozen);Mozzarella Cheese;Olive Oil
+7,Plain Basmati Rice - 3.50 EUR,3.50 EUR,Beilagen & Reis (Sides & Rice),,,Basmati Rice
+8,Moong-Masoor Lentil Mix - 4.50 EUR,4.50 EUR,Other,,,Masoor Dal;Moong Dal;Onions;Tomatoes
+9,Tomato & Onion Salad - 4.00 EUR,4.00 EUR,Salate (Salads),,,Tomatoes;Onions;Olive Oil
